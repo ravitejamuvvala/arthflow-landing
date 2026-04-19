@@ -11,88 +11,122 @@ export default function Home() {
     setSubmitted(true);
     setEmail('');
     setTimeout(() => setSubmitted(false), 3000);
-    // TODO: Integrate with backend to handle waitlist signup
+    // TODO: Integrate with Supabase to handle waitlist signup
   };
 
+  const features = [
+    {
+      title: "You're on track — or here's how to fix it",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+    },
+    {
+      title: "AI that guides decisions, not just tracks expenses",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+    },
+    {
+      title: "From confusion to clarity to confidence — every month",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+    },
+  ];
+
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '4s' }}></div>
+    <div className="min-h-screen bg-slate-50">
+      {/* Navigation */}
+      <nav className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+        <div className="text-2xl font-bold text-blue-900">ArthFlow</div>
+        <div className="text-sm text-slate-600">Coming soon</div>
+      </nav>
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20">
-        <div className="text-center max-w-3xl space-y-8">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 backdrop-blur">
-            <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
-            <span className="text-sm font-medium text-blue-300">Launching Soon</span>
-          </div>
+      {/* Hero Section */}
+      <div className="max-w-4xl mx-auto px-6 py-20 text-center">
+        {/* Tagline */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 border border-blue-200 mb-6">
+          <span className="text-sm font-semibold text-blue-900">Your Monthly Money Operating System</span>
+        </div>
 
-          {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent leading-tight">
-            Manage every salary wisely, stress-free
-          </h1>
+        {/* Main Headline */}
+        <h1 className="text-5xl md:text-6xl font-bold text-slate-900 leading-tight mb-6">
+          Finally know what to do with your salary — every single month.
+        </h1>
 
-          {/* Subheading */}
-          <p className="text-xl md:text-2xl text-slate-300 font-light leading-relaxed">
-            ArthFlow tells you exactly what to do with your money
-          </p>
+        {/* Subheadline */}
+        <p className="text-xl text-slate-600 leading-relaxed mb-12 max-w-2xl mx-auto">
+          ArthFlow tells you exactly where your money should go, what to fix, and how to improve — no spreadsheets, no confusion, no jargon.
+        </p>
 
-          {/* Email Form */}
-          <div className="pt-4">
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+        {/* Features Grid */}
+        <div className="grid md:grid-cols-3 gap-8 my-16">
+          {features.map((feature, idx) => (
+            <div key={idx} className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-blue-300 transition-colors">
+              <div className="flex justify-center mb-4">
+                <div className="text-blue-900 bg-blue-100 p-3 rounded-full">
+                  {feature.icon}
+                </div>
+              </div>
+              <p className="text-sm font-medium text-slate-700">{feature.title}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Waitlist Section */}
+        <div className="bg-gradient-to-br from-blue-50 to-slate-50 rounded-2xl border border-blue-200 p-12 my-16">
+          <h2 className="text-3xl font-bold text-slate-900 mb-2">Be the first to take control of your money</h2>
+          <p className="text-slate-600 mb-8">Join our waitlist and be among the first to experience ArthFlow</p>
+
+          <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3 mb-3">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 backdrop-blur-xl focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 transition-all duration-300"
+                placeholder="your@email.com"
+                className="flex-1 px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-all"
                 required
               />
               <button
                 type="submit"
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-blue-900 whitespace-nowrap"
+                className="px-6 py-3 bg-blue-900 text-white font-semibold rounded-2xl hover:bg-blue-950 transition-colors"
               >
                 Join waitlist
               </button>
-            </form>
+            </div>
+            <p className="text-xs text-slate-500">Free to join. No spam. Ever.</p>
             {submitted && (
-              <p className="mt-4 text-sm text-green-400 animate-fade-in">
-                ✓ Thanks for joining! Check your email for updates.
+              <p className="mt-3 text-sm text-green-600 font-medium">
+                ✓ Thanks for joining! Check your email.
               </p>
             )}
-          </div>
-
-          {/* Screenshot Section */}
-          <div className="pt-12">
-            <div className="w-full max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 backdrop-blur-xl bg-white/5">
-              <img
-                src="/app-screenshot.png"
-                alt="ArthFlow App UI Screenshot"
-                className="w-full h-auto"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-              <div id="placeholder" className="py-32 px-8 text-center bg-gradient-to-b from-blue-700 to-blue-800">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500/20 border border-blue-500/30 mb-4">
-                  <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <p className="text-slate-400 text-lg">App screenshot coming soon</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer text */}
-          <div className="pt-8 text-slate-400 text-sm">
-            <p>No credit card required. Cancel anytime.</p>
-          </div>
+          </form>
         </div>
+
+        {/* Social Proof */}
+        <p className="text-slate-600 text-sm mb-20">Trusted by India's next generation of earners</p>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-slate-200 py-12 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-slate-600 mb-2">ArthFlow is coming soon</p>
+          <p className="text-slate-500 text-sm">
+            Built for India's next generation of earners • 
+            <a href="https://arthflow.in" className="text-blue-900 hover:underline ml-1">
+              arthflow.in
+            </a>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
