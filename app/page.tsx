@@ -36,11 +36,19 @@ export default function Home() {
             Join waitlist
           </button>
         </form>
-        <img
-          src="/app-screenshot.png"
-          alt="ArthFlow App UI Screenshot"
-          className="w-full max-w-md mx-auto rounded-lg shadow-lg"
-        />
+        <div className="w-full max-w-md mx-auto rounded-lg shadow-lg bg-gray-200 dark:bg-gray-800 p-8 text-center">
+          <img
+            src="/app-screenshot.png"
+            alt="ArthFlow App UI Screenshot"
+            className="w-full rounded-lg"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+          <div id="placeholder" className="py-16 text-gray-500 dark:text-gray-400">
+            App screenshot coming soon
+          </div>
+        </div>
       </div>
     </div>
   );
